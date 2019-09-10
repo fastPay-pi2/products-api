@@ -42,8 +42,23 @@ const insert = (request, response) => {
     })
 }
 
+const update = (request, response) => {
+    request_url = request.path.split('/')
+    tableName = request_url[request_url.length - 2]
+    // queries.INSERT(tableName, request.body)
+    // return response.json({message: 'ok'})
+    pool.query(queries.UPDATE(tableName, request.body, request.params.id), (error, results) => {
+        if (error) {
+            throw error
+        }
+        //results.rows
+        response.status(200).json({message: tableName.toUpperCase() + ' successfully added'})
+    })
+}
+
 module.exports = {
     getAll,
     getById,
-    insert
+    insert,
+    update
 }

@@ -2,6 +2,13 @@ const SELECT_ALL = (tableName) => {
     return 'SELECT * FROM ' + tableName + ';'
 }
 
+const UPDATE = (tableName, json, id) => {
+    // console.log(tableName +  column + id)
+    attributes = createUpdateString(json)
+    console.log(attributes);
+    return 'UPDATE ' + tableName + ' SET ' +  attributes + ' WHERE id = ' + id + ";"
+}
+
 const SELECT_ONE = (tableName, id) => {
     param = 'id'
     if (tableName == 'item')
@@ -20,6 +27,16 @@ const INSERT = (tableName, json) => {
     // console.log(values)
 
     return 'INSERT INTO ' + tableName + ' ' + attributes + ' VALUES ' + values + ';'
+}
+
+
+const createUpdateString = (json) => {
+    str = ""
+    for (key in json){
+        str += " " + key + " = '" + json[key] + "'" +","
+    }
+    str = str.substring(0, str.length -1);
+    return str;
 }
 
 // creates string in SQL format to insert
@@ -56,5 +73,6 @@ const isDate = (str) => {
 module.exports = {
     SELECT_ALL,
     SELECT_ONE,
-    INSERT
+    INSERT,
+    UPDATE
 }

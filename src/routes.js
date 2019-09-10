@@ -24,6 +24,7 @@ routes.get('/', (req, res) => {
 routes.get('/product', db.getAll)
 routes.get('/product_by_id', db.getById)
 routes.post('/product/', db.insert)
+routes.put('/product/:id', db.update)
 
 /*
     ITEM ENDPOINTS
