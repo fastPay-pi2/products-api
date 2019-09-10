@@ -3,7 +3,10 @@ const SELECT_ALL = (tableName) => {
 }
 
 const SELECT_ONE = (tableName, id) => {
-    return 'SELECT * FROM ' + tableName + ' WHERE id = ' + id + ';'
+    param = 'id'
+    if (tableName == 'item')
+        param = 'rfid'
+    return 'SELECT * FROM ' + tableName + ' WHERE ' + param  + ' = ' + id + ';'
 }
 
 const INSERT = (tableName, json) => {

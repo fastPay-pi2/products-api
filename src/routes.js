@@ -30,9 +30,9 @@ routes.post('/product/', db.insert)
 
     JSON format:
     {
-	    "name": "product 4",
-	    "image": "image 4",
-	    "price": 8000.234
+	    "rfid": "1",
+	    "expirationDate": "2019-12-26",
+	    "idProduct": 1
     }
 
 */
