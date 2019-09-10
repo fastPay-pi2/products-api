@@ -9,16 +9,35 @@ routes.get('/', (req, res) => {
     })
 })
 
+
+/*
+    PRODUCT ENDPOINTS
+
+    JSON format:
+    {
+	    "name": "product 4",
+	    "image": "image 4",
+	    "price": 8000.234
+    }
+
+*/
 routes.get('/product', db.getAll)
-routes.get('/product/1', db.getById)
+routes.get('/product_by_id', db.getById)
 routes.post('/product/', db.insert)
 
-// routes.post('/devs', (req, res) => {
-//     console.log(req.body)
-//     console.log ('req = ', req.complete)
-//     return res.json({
-//         'myResponse': true
-//     })
-// })
+/*
+    ITEM ENDPOINTS
+
+    JSON format:
+    {
+	    "name": "product 4",
+	    "image": "image 4",
+	    "price": 8000.234
+    }
+
+*/
+routes.get('/item', db.getAll)
+routes.get('/item_by_id', db.getById)
+routes.post('/item/', db.insert)
 
 module.exports = routes

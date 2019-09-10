@@ -9,7 +9,8 @@ const pool = new Pool({
 })
 
 const getAll = (request, response) => {
-    pool.query(queries.SELECT_ALL(getParams(request)), (error, results) => {
+    tableName = request.path.replace('/', '')
+    pool.query(queries.SELECT_ALL(tableName), (error, results) => {
         if (error) {
             throw error
         }
@@ -18,31 +19,27 @@ const getAll = (request, response) => {
 }
 
 const getById = (request, response) => {
-    pool.query(queries.SELECT_ONE(getParams(request)), (error, results) => {
+    tableName = request.path.replace('/', '').replace('_by_id', '')
+    pool.query(queries.SELECT_ONE(tableName, request.query.id), (error, results) => {
         if (error) {
-            throw error
+            response.status(404).json({message: tableName.toUpperCase() + ' not found'})
+            // throw error
         }
         response.status(200).json(results.rows)
     })
 }
 
 const insert = (request, response) => {
-    queries.INSERT(getParams(request), request.body)
-    return response.json({status: 'ok'})
-    pool.query(queries.INSERT(getParams(request), request.body), (error, results) => {
+    tableName = request.path.split('/').join('')
+    // queries.INSERT(tableName, request.body)
+    // return response.json({message: 'ok'})
+    pool.query(queries.INSERT(tableName, request.body), (error, results) => {
         if (error) {
             throw error
         }
-        response.status(200).json(results.rows)
+        //results.rows
+        response.status(200).json({message: tableName.toUpperCase() + ' successfully added'})
     })
-}
-
-const getParams = (request) => {
-    var path = request.route.path
-    var params = path.split('/')
-    params.shift()
-
-    return params
 }
 
 module.exports = {
