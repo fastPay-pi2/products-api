@@ -1,5 +1,5 @@
 CREATE TABLE PRODUCT (
-	id integer PRIMARY KEY,
+	id serial PRIMARY KEY,
 	name varchar(200),
 	image varchar(100),
 	price float(2)

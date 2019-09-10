@@ -5,20 +5,19 @@ services:
     container_name: app
     build:
       context: ./
-      dockerfile: Dockerfile
+      dockerfile: docker/server.Dockerfile
     depends_on:
       - postgres
     volumes:
       - ./:/usr/src/app/
       - /usr/src/app/node_modules
     ports:
-      - "3333:3333"
+      - "3000:3000"
 
   postgres:
-    image: postgres:alpine
+    container_name: database
+    build:
+      context: ./
+      dockerfile: docker/database.Dockerfile
     ports:
       - "5432:5432"
-    environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: pass
-      POSTGRES_DB: db
