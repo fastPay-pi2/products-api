@@ -2,11 +2,15 @@ const SELECT_ALL = (tableName) => {
     return 'SELECT * FROM ' + tableName + ';'
 }
 
-const UPDATE = (tableName, json, id) => {
+const UPDATE = (tableName, json, id_field, id) => {
     // console.log(tableName +  column + id)
     attributes = createUpdateString(json)
-    console.log(attributes);
-    return 'UPDATE ' + tableName + ' SET ' +  attributes + ' WHERE id = ' + id + ";"
+    return 'UPDATE ' + tableName + ' SET ' +  attributes + ' WHERE '+ id_field + ' = ' + id + ";"
+}
+
+const REMOVE = (tableName, id, id_field) => {
+    // console.log(tableName +  column + id)
+    return 'DELETE FROM ' + tableName + ' WHERE ' + id_field + ' = ' + id + ';'
 }
 
 const SELECT_ONE = (tableName, id) => {
@@ -74,5 +78,6 @@ module.exports = {
     SELECT_ALL,
     SELECT_ONE,
     INSERT,
-    UPDATE
+    UPDATE,
+    REMOVE
 }

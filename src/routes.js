@@ -22,9 +22,10 @@ routes.get('/', (req, res) => {
 
 */
 routes.get('/product', db.getAll)
-routes.get('/product_by_id', db.getById)
+routes.get('/product/:id', db.getById)
 routes.post('/product/', db.insert)
 routes.put('/product/:id', db.update)
+routes.delete('/product/:id', db.remove)
 
 /*
     ITEM ENDPOINTS
@@ -38,7 +39,9 @@ routes.put('/product/:id', db.update)
 
 */
 routes.get('/item', db.getAll)
-routes.get('/item_by_id', db.getById)
-routes.post('/item/', db.insert)
+routes.get('/item/:id', db.getById)
+routes.post('/item/',  db.insert)
+routes.put('/item/:id', db.update_item)
+routes.delete('/item/:id', db.remove_item)
 
 module.exports = routes

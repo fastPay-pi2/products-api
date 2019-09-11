@@ -4,8 +4,8 @@ services:
   app:
     container_name: app
     build:
-      context: ./
-      dockerfile: docker/server.Dockerfile
+      context: .
+      dockerfile: ./docker/server.Dockerfile
     depends_on:
       - postgres
     volumes:
@@ -17,7 +17,7 @@ services:
   postgres:
     container_name: database
     build:
-      context: ./
-      dockerfile: docker/database.Dockerfile
+      context: .
+      dockerfile: ./docker/database.Dockerfile
     ports:
       - "5432:5432"
