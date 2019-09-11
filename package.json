@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "echo \"Error: no lint specified\" && exit 1",
     "dev": "nodemon src/server.js"
   },
   "repository": "https://github.com/fastPay-pi2/products-api.git",
