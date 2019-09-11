@@ -51,4 +51,3 @@ build-db:
   - docker
   only:
   - master
-
