@@ -1,4 +1,5 @@
 const express = require('express')
+const { checkSchema } = require('express-validator')
 const routes = express.Router()
 
 const db = require('./db/db')
@@ -22,7 +23,20 @@ JSON format:
 
 routes.get('/product', db.getAll)
 routes.get('/product/:id', db.getById)
-routes.post('/product/', db.insert)
+routes.post('/product/', checkSchema({
+  name: {
+    isString: true,
+    errorMessage: 'invalid name',
+  },
+  image: {
+    isString:  true,
+    errorMessage: 'invalid image'
+  },
+  price: {
+    isFloat: true,
+    errorMessage: 'invalid price'
+  }
+}), db.insert)
 routes.put('/product/:id', db.update)
 routes.delete('/product/:id', db.remove)
 

@@ -1,4 +1,5 @@
 const SELECT_ALL = tableName => {
+  console.log('tablename = ', tableName)
   return 'SELECT * FROM ' + tableName + ';'
 }
 
@@ -72,8 +73,6 @@ const createString = array => {
 }
 
 const isFloat = str => {
-  console.log('str = ', str)
-  console.log(isNaN(parseFloat(str)))
   return isNaN(parseFloat(str)) ? false : true
 }
 

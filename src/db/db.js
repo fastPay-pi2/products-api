@@ -1,8 +1,9 @@
 const Pool = require('pg').Pool
 const queries = require('./queries')
+const { validationResult } = require('express-validator')
 const pool = new Pool({
   user: 'user',
-  host: 'database',
+  host: 'localhost',
   database: 'db',
   password: 'pass',
   port: 5432
@@ -37,6 +38,13 @@ const getById = (request, response) => {
 
 const insert = (request, response) => {
   const tableName = request.path.split('/').join('')
+
+  validation = validationResult(request)
+  errors = validation.errors
+  if (errors.length > 0){
+    return response.status(422).json({errors: errors})
+  }
+
   // queries.INSERT(tableName, request.body)
   // return response.json({message: 'ok'})
   pool.query(queries.INSERT(tableName, request.body), (error, results) => {
@@ -124,6 +132,11 @@ const removeItem = (request, response) => {
         .json({ message: tableName.toUpperCase() + ' successfully removed' })
     }
   )
+}
+
+const validateRequest = (request) => {
+  const errors = validationResult(request)
+  return errors
 }
 
 module.exports = {
