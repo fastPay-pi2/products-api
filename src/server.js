@@ -2,8 +2,7 @@ const express = require('express')
 const routes = require('./routes')
 const server = express()
 
-
-const logMiddleware = function (req, res, next) {
+const logMiddleware = function(req, res, next) {
   console.log(
     `HOST: ${req.headers.host} | URL: ${req.url} | METHOD: ${req.method}`
   )
@@ -14,4 +13,4 @@ server.use(express.json())
 server.use(logMiddleware)
 server.use(routes)
 
-server.listen(3000);
+server.listen(3000)
