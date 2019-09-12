@@ -40,7 +40,7 @@ JSON format:
 routes.get('/item', db.getAll)
 routes.get('/item/:id', db.getById)
 routes.post('/item/', db.insert)
-routes.put('/item/:id', db.update_item)
-routes.delete('/item/:id', db.remove_item)
+routes.put('/item/:id', db.updateItem)
+routes.delete('/item/:id', db.removeItem)
 
 module.exports = routes
