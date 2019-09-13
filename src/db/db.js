@@ -1,12 +1,14 @@
 const Pool = require('pg').Pool
 const queries = require('./queries')
 const { validationResult } = require('express-validator')
+require('dotenv/config')
+
 const pool = new Pool({
-  user: 'user',
-  host: 'database',
-  database: 'db',
-  password: 'pass',
-  port: 5432
+  user: process.env.POSTGRES_USER,
+  host: process.env.POSTGRES_HOST,
+  database: process.env.POSTGRES_DB,
+  password: process.env.POSTGRES_PASSWORD,
+  port: process.env.POSTGRES_PORT
 })
 
 const getAll = (request, response) => {
