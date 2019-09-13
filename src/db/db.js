@@ -3,7 +3,7 @@ const queries = require('./queries')
 const { validationResult } = require('express-validator')
 const pool = new Pool({
   user: 'user',
-  host: 'localhost',
+  host: 'database',
   database: 'db',
   password: 'pass',
   port: 5432
@@ -39,10 +39,10 @@ const getById = (request, response) => {
 const insert = (request, response) => {
   const tableName = request.path.split('/').join('')
 
-  validation = validationResult(request)
-  errors = validation.errors
-  if (errors.length > 0){
-    return response.status(422).json({errors: errors})
+  const validation = validationResult(request)
+  const errors = validation.errors
+  if (errors.length > 0) {
+    return response.status(422).json({ errors: errors })
   }
 
   // queries.INSERT(tableName, request.body)
@@ -132,11 +132,6 @@ const removeItem = (request, response) => {
         .json({ message: tableName.toUpperCase() + ' successfully removed' })
     }
   )
-}
-
-const validateRequest = (request) => {
-  const errors = validationResult(request)
-  return errors
 }
 
 module.exports = {

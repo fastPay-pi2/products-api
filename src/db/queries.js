@@ -73,12 +73,12 @@ const createString = array => {
 }
 
 const isFloat = str => {
-  return isNaN(parseFloat(str)) ? false : true
+  return !isNaN(parseFloat(str))
 }
 
 // TODO - verificação decente
 const isDate = str => {
-  return str.search('-') > 0 ? true : false
+  return str.search('-') > 0
 }
 
 module.exports = {

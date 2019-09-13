@@ -3,6 +3,7 @@ const { checkSchema } = require('express-validator')
 const routes = express.Router()
 
 const db = require('./db/db')
+const schemas = require('./db/schemas')
 
 routes.get('/', (req, res) => {
   return res.json({
@@ -23,21 +24,8 @@ JSON format:
 
 routes.get('/product', db.getAll)
 routes.get('/product/:id', db.getById)
-routes.post('/product/', checkSchema({
-  name: {
-    isString: true,
-    errorMessage: 'invalid name',
-  },
-  image: {
-    isString:  true,
-    errorMessage: 'invalid image'
-  },
-  price: {
-    isFloat: true,
-    errorMessage: 'invalid price'
-  }
-}), db.insert)
-routes.put('/product/:id', db.update)
+routes.post('/product/', checkSchema(schemas.productSchema), db.insert)
+routes.put('/product/:id', checkSchema(schemas.productSchemaPut), db.update)
 routes.delete('/product/:id', db.remove)
 
 /*
@@ -53,8 +41,8 @@ JSON format:
 
 routes.get('/item', db.getAll)
 routes.get('/item/:id', db.getById)
-routes.post('/item/', db.insert)
-routes.put('/item/:id', db.updateItem)
+routes.post('/item/', checkSchema(schemas.itemSchema), db.insert)
+routes.put('/item/:id', checkSchema(schemas.itemSchemaPut), db.updateItem)
 routes.delete('/item/:id', db.removeItem)
 
 module.exports = routes
