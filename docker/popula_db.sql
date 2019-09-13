@@ -1,0 +1,20 @@
+INSERT INTO PRODUCT (name, image, price) VALUES ('Biscoito Recheado Chocolate Passatempo 130g', 'imagem passatempo', 1.59);
+INSERT INTO PRODUCT (name, image, price) VALUES ('Sabão em Pó Brilhante 1Kg', 'imagem sabão em pó', 7.99);
+INSERT INTO PRODUCT (name, image, price) VALUES ('Fraldas Pampers Recém-Nascido Confort Sec RN+ 36 Unidades', 'imagem fraldas pampers', 21.90);
+INSERT INTO PRODUCT (name, image, price) VALUES ('Cerveja Heineken Premium Pilsen Lager 350ml 12 Unidades', 'imagem heineken', 38.28);
+INSERT INTO PRODUCT (name, image, price) VALUES ('Coca-Cola 2 Litros', 'imagem coca-cola', 7.59);
+INSERT INTO PRODUCT (name, image, price) VALUES ('Salgadinho Doritos Sabor Queijo Nacho Elma Chips 167g', 'imagem doritos 167g', 9.49);
+INSERT INTO PRODUCT (name, image, price) VALUES ('Batata Frita Pringles Chips Creme de Cebola 128g', 'imagem pringles', 15.49);
+
+INSERT INTO ITEM (rfid, expirationDate, idProduct) VALUES (1, '2019-12-21', 1);
+INSERT INTO ITEM (rfid, expirationDate, idProduct) VALUES (2, '2019-12-22', 1);
+INSERT INTO ITEM (rfid, expirationDate, idProduct) VALUES (3, '2019-12-21', 2);
+INSERT INTO ITEM (rfid, expirationDate, idProduct) VALUES (4, '2019-12-22', 2);
+INSERT INTO ITEM (rfid, expirationDate, idProduct) VALUES (5, '2019-12-21', 3);
+INSERT INTO ITEM (rfid, expirationDate, idProduct) VALUES (6, '2019-12-22', 3);
+INSERT INTO ITEM (rfid, expirationDate, idProduct) VALUES (7, '2019-12-21', 4);
+INSERT INTO ITEM (rfid, expirationDate, idProduct) VALUES (8, '2019-12-22', 4);
+INSERT INTO ITEM (rfid, expirationDate, idProduct) VALUES (9, '2019-12-21', 5);
+INSERT INTO ITEM (rfid, expirationDate, idProduct) VALUES (10, '2019-12-22', 5);
+INSERT INTO ITEM (rfid, expirationDate, idProduct) VALUES (11, '2019-12-21', 6);
+INSERT INTO ITEM (rfid, expirationDate, idProduct) VALUES (12, '2019-12-22', 6);
