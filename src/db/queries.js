@@ -53,7 +53,7 @@ const createUpdateString = json => {
   return str
 }
 
-// creates string in SQL format to insert
+// DEPRECATED
 const createString = array => {
   let str = '('
   let first = array[0]
