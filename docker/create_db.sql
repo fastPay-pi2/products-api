@@ -1,8 +1,11 @@
 CREATE TABLE PRODUCT (
 	id serial PRIMARY KEY,
 	name varchar(200),
-	image varchar(100),
-	price float(2)
+	brand varchar(100),
+	image varchar(200),
+	price float(2),
+	category varchar(50),
+	subcategory varchar(50)
 );
 
 CREATE TABLE ITEM (

@@ -4,13 +4,11 @@ const SELECT_ALL = tableName => {
 }
 
 const UPDATE = (tableName, json, idField, id) => {
-  // console.log(tableName +  column + id)
   const attributes = createUpdateString(json)
   return `UPDATE ${tableName} SET ${attributes} WHERE ${idField} = ${id};`
 }
 
 const REMOVE = (tableName, id, idField) => {
-  // console.log(tableName +  column + id)
   return `DELETE FROM ${tableName} WHERE ${idField} = ${id};`
 }
 
@@ -26,9 +24,6 @@ const INSERT = (tableName, json) => {
   let values = Object.values(json)
   values = createString(values)
 
-  // console.log(attributes)
-  // console.log(values)
-
   return `INSERT INTO ${tableName} ${attributes} VALUES ${values};`
 }
 
@@ -41,32 +36,17 @@ const createUpdateString = json => {
   return str
 }
 
-// DEPRECATED
 const createString = array => {
   let str = '('
-  let first = array[0]
-  first = isFloat(first) ? first : "'" + first + "'"
 
-  str += first
+  str += "'" + array[0] + "'"
   array.shift()
   array.forEach(element => {
-    if (!isFloat(element) || isDate(String(element))) {
-      element = "'" + element + "'"
-    }
-    str += ', ' + element
-  })
+    str += ', ' + "'" + element + "'"
+  });
   str += ')'
 
   return str
-}
-
-const isFloat = str => {
-  return !isNaN(parseFloat(str))
-}
-
-// TODO - verificação decente
-const isDate = str => {
-  return str.search('-') > 0
 }
 
 module.exports = {
