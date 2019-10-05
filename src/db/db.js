@@ -44,6 +44,8 @@ const insert = (request, response) => {
   const validation = validationResult(request)
   const errors = validation.errors
   if (errors.length > 0) {
+    console.log(request.body)
+    console.log(errors)
     return response.status(422).json({ errors: errors })
   }
 

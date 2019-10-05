@@ -28,6 +28,25 @@ const itemSchema = {
   }
 }
 
+const categorySchema = {
+  name: {
+    isString: true,
+    errorMessage: 'invalid name'
+  }
+}
+
+
+const subcategorySchema = {
+  name: {
+    isString: true,
+    errorMessage: 'invalid name'
+  },
+  idCategory: {
+    isInt: true,
+    errorMessage: 'invalid id for category'
+  }
+}
+
 const productSchemaPut = {
   name: {
     isString: true,
@@ -66,6 +85,8 @@ const itemSchemaPut = {
 module.exports = {
   productSchema,
   itemSchema,
+  categorySchema,
+  subcategorySchema,
   productSchemaPut,
   itemSchemaPut
 }
