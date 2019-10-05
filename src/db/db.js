@@ -38,6 +38,7 @@ const getById = (request, response) => {
   )
 }
 
+// TODO change others requests to don't throw error
 const insert = (request, response) => {
   const tableName = request.path.split('/').join('')
 
@@ -49,16 +50,14 @@ const insert = (request, response) => {
     return response.status(422).json({ errors: errors })
   }
 
-  // queries.INSERT(tableName, request.body)
-  // return response.json({message: 'ok'})
   pool.query(queries.INSERT(tableName, request.body), (error, results) => {
     if (error) {
-      throw error
+      response.status(400).json({ message: 'Error when inserting on DB' })
+    } else {
+      response
+        .status(200)
+        .json({ message: tableName.toUpperCase() + ' successfully added' })
     }
-    // results.rows
-    response
-      .status(200)
-      .json({ message: tableName.toUpperCase() + ' successfully added' })
   })
 }
 

@@ -10,6 +10,14 @@ const productSchema = {
   price: {
     isFloat: true,
     errorMessage: 'invalid price'
+  },
+  idSubcategory: {
+    isInt: true,
+    errorMessage: 'invalid id for subcategory'
+  },
+  brand: {
+    optional: true,
+    errorMessage: 'invalid brand'
   }
 }
 
@@ -62,6 +70,14 @@ const productSchemaPut = {
     isFloat: true,
     optional: true,
     errorMessage: 'invalid price'
+  },
+  idSubcategory: {
+    isInt: true,
+    errorMessage: 'invalid id for subcategory'
+  },
+  brand: {
+    optional: true,
+    errorMessage: 'invalid brand'
   }
 }
 
