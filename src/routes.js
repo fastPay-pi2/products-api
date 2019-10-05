@@ -45,7 +45,6 @@ routes.post('/item/', checkSchema(schemas.itemSchema), db.insert)
 routes.put('/item/:id', checkSchema(schemas.itemSchemaPut), db.updateItem)
 routes.delete('/item/:id', db.removeItem)
 
-
 /*
 CATEGORY ENDPOINTS
 */
@@ -59,7 +58,5 @@ SUBCATEGORY ENDPOINTS
 
 routes.get('/subcategory', db.getAll)
 routes.post('/subcategory/', checkSchema(schemas.subcategorySchema), db.insert)
-
-
 
 module.exports = routes

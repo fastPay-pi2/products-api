@@ -43,7 +43,6 @@ const categorySchema = {
   }
 }
 
-
 const subcategorySchema = {
   name: {
     isString: true,
