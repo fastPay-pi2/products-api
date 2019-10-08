@@ -10,6 +10,14 @@ const productSchema = {
   price: {
     isFloat: true,
     errorMessage: 'invalid price'
+  },
+  idSubcategory: {
+    isInt: true,
+    errorMessage: 'invalid id for subcategory'
+  },
+  brand: {
+    optional: true,
+    errorMessage: 'invalid brand'
   }
 }
 
@@ -28,6 +36,24 @@ const itemSchema = {
   }
 }
 
+const categorySchema = {
+  name: {
+    isString: true,
+    errorMessage: 'invalid name'
+  }
+}
+
+const subcategorySchema = {
+  name: {
+    isString: true,
+    errorMessage: 'invalid name'
+  },
+  idCategory: {
+    isInt: true,
+    errorMessage: 'invalid id for category'
+  }
+}
+
 const productSchemaPut = {
   name: {
     isString: true,
@@ -43,6 +69,14 @@ const productSchemaPut = {
     isFloat: true,
     optional: true,
     errorMessage: 'invalid price'
+  },
+  idSubcategory: {
+    isInt: true,
+    errorMessage: 'invalid id for subcategory'
+  },
+  brand: {
+    optional: true,
+    errorMessage: 'invalid brand'
   }
 }
 
@@ -66,6 +100,8 @@ const itemSchemaPut = {
 module.exports = {
   productSchema,
   itemSchema,
+  categorySchema,
+  subcategorySchema,
   productSchemaPut,
   itemSchemaPut
 }

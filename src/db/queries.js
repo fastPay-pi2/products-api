@@ -43,7 +43,7 @@ const createString = array => {
   array.shift()
   array.forEach(element => {
     str += ', ' + "'" + element + "'"
-  });
+  })
   str += ')'
 
   return str
