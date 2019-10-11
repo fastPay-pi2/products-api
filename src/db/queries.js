@@ -5,17 +5,17 @@ const SELECT_ALL = tableName => {
 
 const UPDATE = (tableName, json, idField, id) => {
   const attributes = createUpdateString(json)
-  return `UPDATE ${tableName} SET ${attributes} WHERE ${idField} = ${id};`
+  return `UPDATE ${tableName} SET ${attributes} WHERE ${idField} = '${id}';`
 }
 
 const REMOVE = (tableName, id, idField) => {
-  return `DELETE FROM ${tableName} WHERE ${idField} = ${id};`
+  return `DELETE FROM ${tableName} WHERE ${idField} = '${id}';`
 }
 
 const SELECT_ONE = (tableName, id) => {
   let param = 'id'
   if (tableName === 'item') param = 'rfid'
-  return `SELECT * FROM ${tableName} WHERE ${param} = ${id};`
+  return `SELECT * FROM ${tableName} WHERE ${param} = '${id}';`
 }
 
 const INSERT = (tableName, json) => {

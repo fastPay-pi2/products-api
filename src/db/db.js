@@ -83,6 +83,7 @@ const update = (request, response) => {
 const remove = (request, response) => {
   const requestUrl = request.path.split('/')
   const tableName = requestUrl[requestUrl.length - 2]
+  console.log(queries.REMOVE(tableName, 'id', request.params.id))
   pool.query(
     queries.REMOVE(tableName, 'id', request.params.id),
     (error, results) => {
@@ -122,7 +123,7 @@ const removeItem = (request, response) => {
   const requestUrl = request.path.split('/')
   const tableName = requestUrl[requestUrl.length - 2]
   pool.query(
-    queries.REMOVE(tableName, 'rfid', request.params.id),
+    queries.REMOVE(tableName, request.params.id, 'rfid'),
     (error, results) => {
       if (error) {
         response

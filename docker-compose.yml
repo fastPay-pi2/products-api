@@ -25,3 +25,15 @@ services:
       - .env
     ports:
       - "5432:5432"
+  
+  database-population:
+    container_name: database_population
+    build:
+      context: .
+      dockerfile: ./docker/database_population.Dockerfile
+    volumes:
+      - ./database_population/:/usr/src/app/
+    depends_on:
+      - app
+    env_file:
+      - .env
