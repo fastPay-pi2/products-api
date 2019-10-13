@@ -5,7 +5,7 @@ import sys
 import re
 import os
 
-PRODUCT_API_URL = os.getenv("PRODUCT_API_URL", "")
+PRODUCT_API_URL = os.getenv("PRODUCT_API_URL", "http://localhost:3000")
 #'http://localhost:3000'
 
 FORMAT = '%(asctime)-15s %(levelname)s %(message)s'
@@ -40,7 +40,7 @@ def get_respective_id(product, tablename):
         ids = ids[0]
     else:
         logging.error(f'{tablename.upper()} does not exist for {product["name"]}')
-    
+
     return ids
 
 

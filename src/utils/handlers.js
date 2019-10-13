@@ -1,6 +1,6 @@
 const handleResponse = (result, response) => {
   if (result.error) {
-    response.status(500).json(result.error)
+    response.status(500).json({ error: result.error })
   } else if (result.res.rowCount > 0) {
     if (result.message) {
       response.status(200).json({ msg: result.message })

@@ -1,8 +1,8 @@
 const { validationResult } = require('express-validator')
 const handlers = require('../utils/handlers')
 const db = require('../db/db')
-const tableName = 'category'
-const idField = 'id'
+const tableName = 'item'
+const idField = 'rfid'
 
 const insert = (request, response) => {
   const validation = validationResult(request)
@@ -35,9 +35,52 @@ const removeById = (request, response) => {
   db.removeOne(tableName, idField, id).then(result => handlers.handleResponse(result, response))
 }
 
+const getBeautifulItems = (request, response) => {
+  const rfids = request.body.rfids
+
+  if (!rfids) {
+    return response.status(400).json({ msg: "Missing list with RFIDs" })
+  }
+
+  beautifulHandle(rfids).then(result => {
+    if (result.error){
+      response.status(400).json({ error: result.error})
+    } else {
+      response.status(200).json(result)
+    }
+  })
+}
+
+async function beautifulHandle(rfids) {
+  var result = {
+    items: []
+  }
+
+  try {
+    for (const rfid of rfids) {
+      await db.selectBeautifulItems(rfid).then(data => {
+        if (data.error) {
+          console.log(data.error)
+        } else {
+          if (data.res.rows.length > 0) {
+            result.items.push(data.res.rows[0])
+          } else {
+            console.log(`There is no item with the id ${rfid}`)
+          }
+        }
+      })
+    }
+  } catch (error) {
+    return { error: 'Invalid data for RFIDS'}
+  }
+
+  return result.items
+}
+
 module.exports = {
   getAll,
   getById,
+  getBeautifulItems,
   insert,
   update,
   removeById

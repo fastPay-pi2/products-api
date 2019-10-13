@@ -1,6 +1,6 @@
 const { validationResult } = require('express-validator')
 const handlers = require('../utils/handlers')
-const db = require('../db/newdb')
+const db = require('../db/db')
 const tableName = 'product'
 const idField = 'id'
 

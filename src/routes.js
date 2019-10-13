@@ -17,9 +17,11 @@ PRODUCT ENDPOINTS
 
 JSON format:
 {
-  "name": "product 4",
-  "image": "image 4",
-  "price": 8000.234
+	"name": "Super product for test",
+	"image": "2",
+	"price": "123",
+	"idSubcategory": 60,
+	"brand": "my cheap brand"
 }
 */
 
@@ -34,21 +36,26 @@ ITEM ENDPOINTS
 
 JSON format:
 {
-  "rfid": "1",
+  "rfid": "EO-QQ-QQ-QQ-QQ-QQ-FF",
   "expirationDate": "2019-12-26",
   "idProduct": 1
 }
 */
 
-routes.get('/item', db.getAll)
-routes.get('/item/:id', db.getById)
-routes.get('/beautifulitems', db.getBeautifulItems)
-routes.post('/item/', checkSchema(schemas.itemSchema), db.insert)
-routes.put('/item/:id', checkSchema(schemas.itemSchemaPut), db.updateItem)
-routes.delete('/item/:id', db.removeItem)
+routes.get('/item', controllers.itemController.getAll)
+routes.get('/item/:id', controllers.itemController.getById)
+routes.get('/beautifulitems', controllers.itemController.getBeautifulItems)
+routes.post('/item/', checkSchema(schemas.itemSchema),controllers.itemController.insert)
+routes.put('/item/:id', checkSchema(schemas.itemSchemaPut), controllers.itemController.update)
+routes.delete('/item/:id', controllers.itemController.removeById)
 
 /*
 CATEGORY ENDPOINTS
+
+JSON format:
+{
+	"name": "Super category for test"
+}
 */
 
 routes.get('/category', controllers.categoryController.getAll)
@@ -59,6 +66,12 @@ routes.delete('/category/:id', controllers.categoryController.removeById)
 
 /*
 SUBCATEGORY ENDPOINTS
+
+JSON format:
+{
+	"idCategory": 14,
+	"name": "Super subcategory for test"
+}
 */
 
 routes.get('/subcategory', controllers.subcategoryController.getAll)
