@@ -1,5 +1,6 @@
 const express = require('express')
 const routes = require('./routes')
+const cors = require('cors')
 const server = express()
 
 const logMiddleware = function(req, res, next) {
@@ -9,6 +10,7 @@ const logMiddleware = function(req, res, next) {
   return next()
 }
 
+server.use(cors())
 server.use(express.json())
 server.use(logMiddleware)
 server.use(routes)
