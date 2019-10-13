@@ -13,6 +13,8 @@ services:
     volumes:
       - ./:/usr/src/app/
       - /usr/src/app/node_modules
+    networks:
+      - fastpay-network
     ports:
       - "3000:3000"
 
@@ -21,6 +23,8 @@ services:
     build:
       context: .
       dockerfile: ./docker/database.Dockerfile
+    networks:
+      - fastpay-network
     env_file:
       - .env
     ports:
@@ -33,7 +37,13 @@ services:
       dockerfile: ./docker/database_population.Dockerfile
     volumes:
       - ./database_population/:/usr/src/app/
+    networks:
+      - fastpay-network
     depends_on:
       - app
     env_file:
       - .env
+  
+networks:
+  fastpay-network:
+    external: true
