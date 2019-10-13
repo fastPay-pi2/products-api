@@ -1,61 +1,67 @@
-const SELECT_ALL = (tableName) => {
-    return 'SELECT * FROM ' + tableName
+const SELECT_ALL = tableName => {
+  console.log('tablename = ', tableName)
+  return `SELECT * FROM ${tableName};`
 }
 
-const SELECT_ONE = (params) => {
-    tableName = params[0]
-    id = params[1]
-
-    return 'SELECT * FROM ' + tableName + ' WHERE id = ' + id
+const SELECT_BEAUTIFUL_ITEMS = rfid => {
+  return `SELECT p.name as productName, p.brand as productBrand, p.image as productImage,
+          p.price as productPrice, c.name as categoryName, s.name as subcategoryName, i.rfid 
+          FROM PRODUCT p, CATEGORY c, SUBCATEGORY s, ITEM i 
+          WHERE i.rfid = '${rfid}' AND p.id = i.idproduct AND c.id = s.idcategory 
+          AND s.id = p.idsubcategory;`
 }
 
-const INSERT = (params, json) => {
-    tableName = params[0]
-
-    attributes = Object.keys(json)
-    values = Object.values(json)
-    // first = attributes[0]
-    // attributes.shift()
-
-    // strAttribute = first
-    // attributes.forEach(element => {
-        // strAttribute += ', ' + element
-    // });
-
-    attributes = createString(attributes)
-    values = createString(values)
-
-    console.log(attributes)
-    console.log(values)
-
-    // return 'INSERT INTO ' + tableName + ' ' + attributes + ' VALUES ' + values
+const UPDATE = (tableName, json, idField, id) => {
+  const attributes = createUpdateString(json)
+  return `UPDATE ${tableName} SET ${attributes} WHERE ${idField} = '${id}';`
 }
 
-// creates string in SQL format to insert
-const createString = (array) => {
-    str = '('
-    first = array[0]
-    first = isFloat(first) ? first : ('"' + first + '"')
-    
-    str += first
-    array.shift()
-    array.forEach(element => {
-        if (!isFloat(element)){
-            element = '"' + element + '"'
-        }
-        str += ', ' + element        
-    });
-    str += ')'
-
-    return str
+const REMOVE = (tableName, id, idField) => {
+  return `DELETE FROM ${tableName} WHERE ${idField} = '${id}';`
 }
 
-const isFloat = (str) => {
-    return isNaN(parseFloat(str)) ? false : true
+const SELECT_ONE = (tableName, id) => {
+  let param = 'id'
+  if (tableName === 'item') param = 'rfid'
+  return `SELECT * FROM ${tableName} WHERE ${param} = '${id}';`
+}
+
+const INSERT = (tableName, json) => {
+  let attributes = Object.keys(json)
+  attributes = '(' + attributes + ')'
+  let values = Object.values(json)
+  values = createString(values)
+
+  return `INSERT INTO ${tableName} ${attributes} VALUES ${values};`
+}
+
+const createUpdateString = json => {
+  let str = ''
+  for (const key in json) {
+    str += ' ' + key + " = '" + json[key] + "'" + ','
+  }
+  str = str.substring(0, str.length - 1)
+  return str
+}
+
+const createString = array => {
+  let str = '('
+
+  str += "'" + array[0] + "'"
+  array.shift()
+  array.forEach(element => {
+    str += ', ' + "'" + element + "'"
+  })
+  str += ')'
+
+  return str
 }
 
 module.exports = {
-    SELECT_ALL,
-    SELECT_ONE,
-    INSERT
+  SELECT_ALL,
+  SELECT_ONE,
+  INSERT,
+  SELECT_BEAUTIFUL_ITEMS,
+  UPDATE,
+  REMOVE
 }
