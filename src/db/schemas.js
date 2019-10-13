@@ -23,7 +23,7 @@ const productSchema = {
 
 const itemSchema = {
   rfid: {
-    isInt: true,
+    isString: true,
     errorMessage: 'invalid rfid'
   },
   expirationDate: {

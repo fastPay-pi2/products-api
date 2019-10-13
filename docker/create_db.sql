@@ -25,7 +25,7 @@ CREATE TABLE PRODUCT (
 );
 
 CREATE TABLE ITEM (
-	rfid integer PRIMARY KEY,
+	rfid char(20) PRIMARY KEY,
 	expirationDate DATE,
 	idProduct integer,
 

@@ -12,12 +12,16 @@ const pool = new Pool({
 })
 
 const getAll = (request, response) => {
-  const tableName = request.path.replace('/', '')
-  pool.query(queries.SELECT_ALL(tableName), (error, results) => {
+  const tableName = request.path.split('/')
+  tableName.shift()
+  pool.query(queries.SELECT_ALL(tableName[0]), (error, results) => {
     if (error) {
-      throw error
+      response.status(500).json({
+        error: 'Internal server error'
+      })
+    } else {
+      response.status(200).json(results.rows)
     }
-    response.status(200).json(results.rows)
   })
 }
 
@@ -28,10 +32,7 @@ const getById = (request, response) => {
     queries.SELECT_ONE(tableName, request.params.id),
     (error, results) => {
       if (error) {
-        response
-          .status(404)
-          .json({ message: tableName.toUpperCase() + ' not found' })
-        // throw error
+        response.status(404).json({ message: tableName.toUpperCase() + ' not found' })
       }
       response.status(200).json(results.rows)
     }
@@ -41,12 +42,9 @@ const getById = (request, response) => {
 // TODO change others requests to don't throw error
 const insert = (request, response) => {
   const tableName = request.path.split('/').join('')
-
   const validation = validationResult(request)
   const errors = validation.errors
   if (errors.length > 0) {
-    console.log(request.body)
-    console.log(errors)
     return response.status(422).json({ errors: errors })
   }
 
@@ -54,9 +52,9 @@ const insert = (request, response) => {
     if (error) {
       response.status(400).json({ message: 'Error when inserting on DB' })
     } else {
-      response
-        .status(200)
-        .json({ message: tableName.toUpperCase() + ' successfully added' })
+      response.status(200).json({
+        message: tableName.toUpperCase() + ' successfully added'
+      })
     }
   })
 }
@@ -64,18 +62,15 @@ const insert = (request, response) => {
 const update = (request, response) => {
   const requestUrl = request.path.split('/')
   const tableName = requestUrl[requestUrl.length - 2]
-  // queries.INSERT(tableName, request.body)
-  // return response.json({message: 'ok'})
   pool.query(
     queries.UPDATE(tableName, request.body, 'id', request.params.id),
     (error, results) => {
       if (error) {
-        throw error
+        response.json({ error: error })
       }
-      // results.rows
-      response
-        .status(200)
-        .json({ message: tableName.toUpperCase() + ' successfully updated' })
+      response.status(200).json({
+        message: tableName.toUpperCase() + ' successfully updated'
+      })
     }
   )
 }
@@ -87,14 +82,13 @@ const remove = (request, response) => {
     queries.REMOVE(tableName, 'id', request.params.id),
     (error, results) => {
       if (error) {
-        response
-          .status(404)
-          .json({ message: tableName.toUpperCase() + ' not found' })
-        // throw error
+        response.status(404).json({
+          message: tableName.toUpperCase() + ' not found'
+        })
       }
-      response
-        .status(200)
-        .json({ message: tableName.toUpperCase() + ' successfully removed' })
+      response.status(200).json({
+        message: tableName.toUpperCase() + ' successfully removed'
+      })
     }
   )
 }
@@ -102,18 +96,15 @@ const remove = (request, response) => {
 const updateItem = (request, response) => {
   const requestUrl = request.path.split('/')
   const tableName = requestUrl[requestUrl.length - 2]
-  // queries.INSERT(tableName, request.body)
-  // return response.json({message: 'ok'})
   pool.query(
     queries.UPDATE(tableName, request.body, 'rfid', request.params.id),
     (error, results) => {
       if (error) {
         throw error
       }
-      // results.rows
-      response
-        .status(200)
-        .json({ message: tableName.toUpperCase() + ' successfully updated' })
+      response.status(200).json({
+        message: tableName.toUpperCase() + ' successfully updated'
+      })
     }
   )
 }
@@ -122,24 +113,63 @@ const removeItem = (request, response) => {
   const requestUrl = request.path.split('/')
   const tableName = requestUrl[requestUrl.length - 2]
   pool.query(
-    queries.REMOVE(tableName, 'rfid', request.params.id),
+    queries.REMOVE(tableName, request.params.id, 'rfid'),
     (error, results) => {
       if (error) {
-        response
-          .status(404)
-          .json({ message: tableName.toUpperCase() + ' not found' })
-        // throw error
+        response.status(404).json({
+          message: tableName.toUpperCase() + ' not found'
+        })
       }
-      response
-        .status(200)
-        .json({ message: tableName.toUpperCase() + ' successfully removed' })
+      response.status(200).json({
+        message: tableName.toUpperCase() + ' successfully removed'
+      })
     }
   )
+}
+
+const getBeautifulItems = (request, response) => {
+  const rfids = request.body.rfids
+
+  try {
+    beautifulHandle(rfids).then(result => {
+      response.status(200).json(result)
+    })
+  } catch (error) {
+    response.status(400).json({ error: 'RFIDS are missing' })
+  }
+}
+
+async function beautifulHandle(rfids) {
+  var result = {
+    items: []
+  }
+
+  try {
+    for (const rfid of rfids) {
+      try {
+        var res = await pool.query(
+          queries.SELECT_BEAUTIFUL_ITEMS(rfid)
+        )
+        if (res.rows[0]) {
+          result.items.push(res.rows[0])
+        } else {
+          console.log(`Could not find a product to the RFID ${rfid}`)
+        }
+      } catch (err) {
+        console.log(err.message)
+      }
+    }
+    return result
+  } catch (err) {
+    console.log(err.message)
+    return result
+  }
 }
 
 module.exports = {
   getAll,
   getById,
+  getBeautifulItems,
   insert,
   update,
   remove,
