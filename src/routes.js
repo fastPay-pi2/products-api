@@ -51,14 +51,20 @@ routes.delete('/item/:id', db.removeItem)
 CATEGORY ENDPOINTS
 */
 
-routes.get('/category', db.getAll)
-routes.post('/category/', checkSchema(schemas.categorySchema), db.insert)
+routes.get('/category', controllers.categoryController.getAll)
+routes.get('/category/:id', controllers.categoryController.getById)
+routes.post('/category/', checkSchema(schemas.categorySchema), controllers.categoryController.insert)
+routes.put('/category/:id', checkSchema(schemas.categorySchema), controllers.categoryController.update)
+routes.delete('/category/:id', controllers.categoryController.removeById)
 
 /*
 SUBCATEGORY ENDPOINTS
 */
 
-routes.get('/subcategory', db.getAll)
-routes.post('/subcategory/', checkSchema(schemas.subcategorySchema), db.insert)
+routes.get('/subcategory', controllers.subcategoryController.getAll)
+routes.get('/subcategory/:id', controllers.subcategoryController.getById)
+routes.post('/subcategory/', checkSchema(schemas.subcategorySchema), controllers.subcategoryController.insert)
+routes.put('/subcategory/:id', checkSchema(schemas.subcategorySchema), controllers.subcategoryController.update)
+routes.delete('/subcategory/:id', controllers.subcategoryController.removeById)
 
 module.exports = routes

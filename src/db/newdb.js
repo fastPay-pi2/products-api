@@ -1,5 +1,5 @@
 const Pool = require('pg').Pool
-const queries = require('../db/queries')
+const queries = require('./queries')
 require('dotenv/config')
 
 const pool = new Pool({
@@ -12,7 +12,7 @@ const pool = new Pool({
 
 async function insert(tableName, body) {
   try {
-    res = await pool.query(queries.INSERT(tableName, body))
+    var res = await pool.query(queries.INSERT(tableName, body))
     return { res: res, message: `${tableName.toUpperCase()} successfully added` }
   } catch (error) {
     console.log(error.message)
@@ -22,7 +22,7 @@ async function insert(tableName, body) {
 
 async function update(tableName, body, idField, id) {
   try {
-    res = await pool.query(queries.UPDATE(tableName, body, idField, id))
+    var res = await pool.query(queries.UPDATE(tableName, body, idField, id))
     return { res: res, message: `${tableName.toUpperCase()} successfully updated` }
   } catch (error) {
     console.log(error.message)
@@ -32,7 +32,7 @@ async function update(tableName, body, idField, id) {
 
 async function selectAll(tableName) {
   try {
-    res = await pool.query(queries.SELECT_ALL(tableName))
+    var res = await pool.query(queries.SELECT_ALL(tableName))
     return { res: res }
   } catch (error) {
     console.log(error.message)
@@ -42,7 +42,7 @@ async function selectAll(tableName) {
 
 async function selectOne(tableName, id) {
   try {
-    res = await pool.query(queries.SELECT_ONE(tableName, id))
+    var res = await pool.query(queries.SELECT_ONE(tableName, id))
     return { res: res }
   } catch (error) {
     console.log(error.message)
@@ -52,7 +52,7 @@ async function selectOne(tableName, id) {
 
 async function removeOne(tableName, idField, id) {
   try {
-    res = await pool.query(queries.REMOVE(tableName, idField, id))
+    var res = await pool.query(queries.REMOVE(tableName, idField, id))
     return { res: res, message: `${tableName.toUpperCase()} successfully removed` }
   } catch (error) {
     console.log(error.message)

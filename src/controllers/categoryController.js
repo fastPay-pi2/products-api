@@ -1,7 +1,7 @@
 const { validationResult } = require('express-validator')
 const handlers = require('../utils/handlers')
 const db = require('../db/newdb')
-const tableName = 'product'
+const tableName = 'category'
 const idField = 'id'
 
 const insert = (request, response) => {
@@ -14,7 +14,6 @@ const insert = (request, response) => {
   }
 }
 
-// Escolher qual tipo deixar
 const update = (request, response) => {
   var id = request.params.id
   db.update(tableName, request.body, idField, id).then(result => {
