@@ -41,6 +41,7 @@ JSON format:
 
 routes.get('/item', db.getAll)
 routes.get('/item/:id', db.getById)
+routes.get('/beautifulitems', db.getBeautifulItems)
 routes.post('/item/', checkSchema(schemas.itemSchema), db.insert)
 routes.put('/item/:id', checkSchema(schemas.itemSchemaPut), db.updateItem)
 routes.delete('/item/:id', db.removeItem)
