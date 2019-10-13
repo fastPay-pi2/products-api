@@ -5,9 +5,9 @@ const SELECT_ALL = tableName => {
 
 const SELECT_BEAUTIFUL_ITEMS = rfid => {
   return `SELECT p.name as productName, p.brand as productBrand, p.image as productImage,
-          p.price as productPrice, c.name as categoryName, s.name as subcategoryName, i.rfid 
-          FROM PRODUCT p, CATEGORY c, SUBCATEGORY s, ITEM i 
-          WHERE i.rfid = '${rfid}' AND p.id = i.idproduct AND c.id = s.idcategory 
+          p.price as productPrice, c.name as categoryName, s.name as subcategoryName, i.rfid
+          FROM PRODUCT p, CATEGORY c, SUBCATEGORY s, ITEM i
+          WHERE i.rfid = '${rfid}' AND p.id = i.idproduct AND c.id = s.idcategory
           AND s.id = p.idsubcategory;`
 }
 
@@ -16,7 +16,7 @@ const UPDATE = (tableName, json, idField, id) => {
   return `UPDATE ${tableName} SET ${attributes} WHERE ${idField} = '${id}';`
 }
 
-const REMOVE = (tableName, id, idField) => {
+const REMOVE = (tableName, idField, id) => {
   return `DELETE FROM ${tableName} WHERE ${idField} = '${id}';`
 }
 

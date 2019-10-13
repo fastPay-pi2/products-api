@@ -3,6 +3,7 @@ const { checkSchema } = require('express-validator')
 const routes = express.Router()
 
 const db = require('./db/db')
+const controllers = require('./controllers')
 const schemas = require('./db/schemas')
 
 routes.get('/', (req, res) => {
@@ -22,11 +23,11 @@ JSON format:
 }
 */
 
-routes.get('/product', db.getAll)
-routes.get('/product/:id', db.getById)
-routes.post('/product/', checkSchema(schemas.productSchema), db.insert)
-routes.put('/product/:id', checkSchema(schemas.productSchemaPut), db.update)
-routes.delete('/product/:id', db.remove)
+routes.get('/product', controllers.productController.getAll)
+routes.get('/product/:id', controllers.productController.getById)
+routes.post('/product/', checkSchema(schemas.productSchema), controllers.productController.insert)
+routes.put('/product/:id', checkSchema(schemas.productSchemaPut), controllers.productController.update)
+routes.delete('/product/:id', controllers.productController.removeById)
 
 /*
 ITEM ENDPOINTS
