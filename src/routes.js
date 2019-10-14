@@ -2,9 +2,11 @@ const express = require('express')
 const { checkSchema } = require('express-validator')
 const routes = express.Router()
 
-const db = require('./db/db')
+const authMiddleware = require('./middlewares/auth')
 const controllers = require('./controllers')
 const schemas = require('./db/schemas')
+
+routes.use(authMiddleware)
 
 routes.get('/', (req, res) => {
   return res.json({

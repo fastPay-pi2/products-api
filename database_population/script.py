@@ -5,8 +5,8 @@ import sys
 import re
 import os
 
-PRODUCT_API_URL = os.getenv("PRODUCT_API_URL", "http://localhost:3000")
-#'http://localhost:3000'
+# PRODUCT_API_URL = os.getenv("PRODUCT_API_URL", "http://localhost:3000")
+PRODUCT_API_URL = 'http://localhost:3000'
 
 FORMAT = '%(asctime)-15s %(levelname)s %(message)s'
 logging.basicConfig(
@@ -27,6 +27,8 @@ def get_all_request(table):
     r = requests.get(f'{PRODUCT_API_URL}/{table}')
     if r.status_code == 200:
         categories = r.json()
+    elif r.status_code == 404:
+        categories = []
     else:
         logging.error(f'Error on requesting PRODUCT API: {r.status_code}')
         raise Exception
