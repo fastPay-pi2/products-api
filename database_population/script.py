@@ -5,8 +5,8 @@ import sys
 import re
 import os
 
-# PRODUCT_API_URL = os.getenv("PRODUCT_API_URL", "http://localhost:3000")
-PRODUCT_API_URL = 'http://localhost:3000'
+PRODUCT_API_URL = os.getenv("PRODUCT_API_URL", "http://localhost:3000")
+# PRODUCT_API_URL = 'http://localhost:3000'
 
 FORMAT = '%(asctime)-15s %(levelname)s %(message)s'
 logging.basicConfig(
