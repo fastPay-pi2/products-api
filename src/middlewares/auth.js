@@ -1,5 +1,5 @@
 const axios = require('axios')
-const baseUrl = 'http://app:3001/check'
+const baseUrl = 'http://authentication_app:3001/check'
 
 module.exports = async (req, res, next) => {
   const authHeader = req.headers.authorization
