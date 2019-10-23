@@ -19,11 +19,11 @@ PRODUCT ENDPOINTS
 
 JSON format:
 {
-	"name": "Super product for test",
-	"image": "2",
-	"price": "123",
-	"idSubcategory": 60,
-	"brand": "my cheap brand"
+  "name": "Super product for test",
+  "image": "2",
+  "price": "123",
+  "idSubcategory": 60,
+  "brand": "my cheap brand"
 }
 */
 
@@ -47,7 +47,7 @@ JSON format:
 routes.get('/item', controllers.itemController.getAll)
 routes.get('/item/:id', controllers.itemController.getById)
 routes.get('/beautifulitems', controllers.itemController.getBeautifulItems)
-routes.post('/item/', checkSchema(schemas.itemSchema),controllers.itemController.insert)
+routes.post('/item/', checkSchema(schemas.itemSchema), controllers.itemController.insert)
 routes.put('/item/:id', checkSchema(schemas.itemSchemaPut), controllers.itemController.update)
 routes.delete('/item/:id', controllers.itemController.removeById)
 
@@ -56,7 +56,7 @@ CATEGORY ENDPOINTS
 
 JSON format:
 {
-	"name": "Super category for test"
+  "name": "Super category for test"
 }
 */
 
@@ -71,8 +71,8 @@ SUBCATEGORY ENDPOINTS
 
 JSON format:
 {
-	"idCategory": 14,
-	"name": "Super subcategory for test"
+  "idCategory": 14,
+  "name": "Super subcategory for test"
 }
 */
 

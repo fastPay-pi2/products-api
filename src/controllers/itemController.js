@@ -39,12 +39,12 @@ const getBeautifulItems = (request, response) => {
   const rfids = request.body.rfids
 
   if (!rfids) {
-    return response.status(400).json({ msg: "Missing list with RFIDs" })
+    return response.status(400).json({ msg: 'Missing list with RFIDs' })
   }
 
   beautifulHandle(rfids).then(result => {
-    if (result.error){
-      response.status(400).json({ error: result.error})
+    if (result.error) {
+      response.status(400).json({ error: result.error })
     } else {
       response.status(200).json(result)
     }
@@ -71,7 +71,7 @@ async function beautifulHandle(rfids) {
       })
     }
   } catch (error) {
-    return { error: 'Invalid data for RFIDS'}
+    return { error: 'Invalid data for RFIDS' }
   }
 
   return result.items

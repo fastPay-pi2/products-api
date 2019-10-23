@@ -1,7 +1,7 @@
 const axios = require('axios')
 const baseUrl = 'http://authentication_app:3001/check'
 
-module.exports = async (req, res, next) => {
+module.exports = async(req, res, next) => {
   const authHeader = req.headers.authorization
 
   if (!authHeader) {
@@ -9,7 +9,7 @@ module.exports = async (req, res, next) => {
   }
 
   var config = {
-    headers: {'Authorization': authHeader}
+    headers: { Authorization: authHeader }
   }
 
   try {

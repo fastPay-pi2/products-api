@@ -10,7 +10,6 @@ const pool = new Pool({
   port: process.env.POSTGRES_PORT
 })
 
-
 /*
 General functions
 */
@@ -65,7 +64,7 @@ async function removeOne(tableName, idField, id) {
   }
 }
 
-/*==============================================================================*/
+/* ============================================================================== */
 
 /*
 Custom functions
@@ -79,7 +78,6 @@ async function selectBeautifulItems(rfid) {
     console.log(error.message)
     return { error: error.message }
   }
-
 }
 
 module.exports = {
