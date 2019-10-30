@@ -1,5 +1,5 @@
 CREATE TABLE CATEGORY (
-	id seriaL PRIMARY KEY NOT NULL,
+	id serial PRIMARY KEY NOT NULL,
 	name varchar(50) NOT NULL
 );
 
@@ -25,7 +25,7 @@ CREATE TABLE PRODUCT (
 );
 
 CREATE TABLE ITEM (
-	rfid char(20) PRIMARY KEY,
+	rfid char(41) PRIMARY KEY,
 	expirationDate DATE,
 	idProduct integer,
 
