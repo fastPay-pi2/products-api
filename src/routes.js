@@ -49,6 +49,7 @@ routes.get('/item/:id', controllers.itemController.getById)
 routes.get('/beautifulitems', controllers.itemController.getBeautifulItems)
 routes.post('/item/', checkSchema(schemas.itemSchema), controllers.itemController.insert)
 routes.put('/item/:id', checkSchema(schemas.itemSchemaPut), controllers.itemController.update)
+routes.delete('/item/', controllers.itemController.removeByList)
 routes.delete('/item/:id', controllers.itemController.removeById)
 
 /*

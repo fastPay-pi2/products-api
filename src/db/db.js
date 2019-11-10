@@ -64,6 +64,16 @@ async function removeOne(tableName, idField, id) {
   }
 }
 
+async function removeByList(tableName, idField, ids) {
+  try {
+    var res = await pool.query(queries.REMOVE_LIST(tableName, idField, ids))
+    return { res: res, message: `${tableName.toUpperCase()} successfully removed` }
+  } catch (error) {
+    console.log(error.message)
+    return { error: error.message }
+  }
+}
+
 /* ============================================================================== */
 
 /*
@@ -86,5 +96,6 @@ module.exports = {
   selectAll,
   selectOne,
   selectBeautifulItems,
-  removeOne
+  removeOne,
+  removeByList
 }

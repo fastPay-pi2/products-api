@@ -21,6 +21,11 @@ const REMOVE = (tableName, idField, id) => {
   return `DELETE FROM ${tableName} WHERE ${idField} = '${id}';`
 }
 
+const REMOVE_LIST = (tableName, idField, ids) => {
+  ids = sqlStringCreator.createStringFromArray(ids)
+  return `DELETE FROM ${tableName} WHERE ${idField} IN ${ids};`
+}
+
 const SELECT_ONE = (tableName, id) => {
   let param = 'id'
   if (tableName === 'item') param = 'rfid'
@@ -31,7 +36,7 @@ const INSERT = (tableName, json) => {
   let attributes = Object.keys(json)
   attributes = '(' + attributes + ')'
   let values = Object.values(json)
-  values = sqlStringCreator.createInsertString(values)
+  values = sqlStringCreator.createStringFromArray(values)
 
   return `INSERT INTO ${tableName} ${attributes} VALUES ${values};`
 }
@@ -42,5 +47,6 @@ module.exports = {
   INSERT,
   SELECT_BEAUTIFUL_ITEMS,
   UPDATE,
-  REMOVE
+  REMOVE,
+  REMOVE_LIST
 }
