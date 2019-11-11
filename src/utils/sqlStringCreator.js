@@ -7,7 +7,7 @@ const createUpdateString = json => {
   return str
 }
 
-const createInsertString = array => {
+const createStringFromArray = array => {
   let str = '('
 
   str += "'" + array[0] + "'"
@@ -21,6 +21,6 @@ const createInsertString = array => {
 }
 
 module.exports = {
-  createInsertString,
+  createStringFromArray,
   createUpdateString
 }

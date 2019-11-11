@@ -21,6 +21,22 @@ const update = (request, response) => {
   })
 }
 
+const removeById = (request, response) => {
+  var id = request.params.id
+  db.removeOne(tableName, idField, id).then(result => handlers.handleResponse(result, response))
+}
+
+const removeByList = (request, response) => {
+  var rfids = request.body.rfids
+  if (!rfids) {
+    return response.status(400).json({ msg: 'Missing list with RFIDs' })
+  }
+
+  db.removeByList(tableName, idField, rfids).then(result => handlers.handleResponse(result, response))
+}
+
+/* ######################## SELECTS ######################## */
+
 const getAll = (request, response) => {
   db.selectAll(tableName).then(result => handlers.handleResponse(result, response))
 }
@@ -28,11 +44,6 @@ const getAll = (request, response) => {
 const getById = (request, response) => {
   var id = request.params.id
   db.selectOne(tableName, id).then(result => handlers.handleResponse(result, response))
-}
-
-const removeById = (request, response) => {
-  var id = request.params.id
-  db.removeOne(tableName, idField, id).then(result => handlers.handleResponse(result, response))
 }
 
 const getBeautifulItems = (request, response) => {
@@ -83,5 +94,6 @@ module.exports = {
   getBeautifulItems,
   insert,
   update,
-  removeById
+  removeById,
+  removeByList
 }
