@@ -1,10 +1,10 @@
-INSERT INTO PRODUCT (name, image, price) VALUES ('Biscoito Recheado Chocolate Passatempo 130g', 'imagem passatempo', 1.59);
-INSERT INTO PRODUCT (name, image, price) VALUES ('Sabão em Pó Brilhante 1Kg', 'imagem sabão em pó', 7.99);
-INSERT INTO PRODUCT (name, image, price) VALUES ('Fraldas Pampers Recém-Nascido Confort Sec RN+ 36 Unidades', 'imagem fraldas pampers', 21.90);
-INSERT INTO PRODUCT (name, image, price) VALUES ('Cerveja Heineken Premium Pilsen Lager 350ml 12 Unidades', 'imagem heineken', 38.28);
-INSERT INTO PRODUCT (name, image, price) VALUES ('Coca-Cola 2 Litros', 'imagem coca-cola', 7.59);
-INSERT INTO PRODUCT (name, image, price) VALUES ('Salgadinho Doritos Sabor Queijo Nacho Elma Chips 167g', 'imagem doritos 167g', 9.49);
-INSERT INTO PRODUCT (name, image, price) VALUES ('Batata Frita Pringles Chips Creme de Cebola 128g', 'imagem pringles', 15.49);
+INSERT INTO PRODUCT (name, image, barcode, price) VALUES ('Biscoito Recheado Chocolate Passatempo 130g', 'imagem passatempo', '7891234400000', 1.59);
+INSERT INTO PRODUCT (name, image, barcode, price) VALUES ('Sabão em Pó Brilhante 1Kg', 'imagem sabão em pó', '7891234500001',7.99);
+INSERT INTO PRODUCT (name, image, barcode, price) VALUES ('Fraldas Pampers Recém-Nascido Confort Sec RN+ 36 Unidades', 'imagem fraldas pampers', '7891234500002', 21.90);
+INSERT INTO PRODUCT (name, image, barcode, price) VALUES ('Cerveja Heineken Premium Pilsen Lager 350ml 12 Unidades', 'imagem heineken', '7891234500002', 38.28);
+INSERT INTO PRODUCT (name, image, barcode, price) VALUES ('Coca-Cola 2 Litros', 'imagem coca-cola', '7891234500003', '7891234500004', 7.59);
+INSERT INTO PRODUCT (name, image, barcode, price) VALUES ('Salgadinho Doritos Sabor Queijo Nacho Elma Chips 167g', 'imagem doritos 167g', '7891234500005', 9.49);
+INSERT INTO PRODUCT (name, image, barcode, price) VALUES ('Batata Frita Pringles Chips Creme de Cebola 128g', 'imagem pringles', '7891234500006', 15.49);
 
 INSERT INTO ITEM (rfid, expirationDate, idProduct) VALUES (1, '2019-12-21', 1);
 INSERT INTO ITEM (rfid, expirationDate, idProduct) VALUES (2, '2019-12-22', 1);
