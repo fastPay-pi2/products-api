@@ -6,7 +6,8 @@ const SELECT_ALL = tableName => {
 
 const SELECT_BEAUTIFUL_ITEMS = rfid => {
   return `SELECT p.name as productName, p.brand as productBrand, p.image as productImage,
-          p.price as productPrice, p.id as productId, c.name as categoryName, s.name as subcategoryName, i.rfid
+          p.price as productPrice, p.id as productId, c.name as categoryName,
+          s.name as subcategoryName, i.rfid, p.barcode
           FROM PRODUCT p, CATEGORY c, SUBCATEGORY s, ITEM i
           WHERE i.rfid = '${rfid}' AND p.id = i.idproduct AND c.id = s.idcategory
           AND s.id = p.idsubcategory;`
