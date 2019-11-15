@@ -17,6 +17,7 @@ CREATE TABLE PRODUCT (
 	name varchar(200) NOT NULL,
 	brand varchar(100),
 	image varchar(200),
+	barcode char(13),
 	price float(2) NOT NULL,
 	idSubcategory integer,
 
