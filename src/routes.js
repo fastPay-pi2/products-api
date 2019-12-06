@@ -28,6 +28,7 @@ JSON format:
 */
 
 routes.get('/product', controllers.productController.getAll)
+routes.get('/beautiful_products', controllers.productController.getBeautifulProduct)
 routes.get('/product/:id', controllers.productController.getById)
 routes.post('/product/', checkSchema(schemas.productSchema), controllers.productController.insert)
 routes.put('/product/:id', checkSchema(schemas.productSchemaPut), controllers.productController.update)

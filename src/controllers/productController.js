@@ -26,6 +26,11 @@ const getAll = (request, response) => {
   db.selectAll(tableName).then(result => handlers.handleResponse(result, response))
 }
 
+const getBeautifulProduct = (request, response) => {
+  db.selectAll(tableName).then(result =>
+    handlers.handleBeautifulProduct(result, response))
+}
+
 const getById = (request, response) => {
   var id = request.params.id
   db.selectOne(tableName, id).then(result => handlers.handleResponse(result, response))
@@ -38,6 +43,7 @@ const removeById = (request, response) => {
 
 module.exports = {
   getAll,
+  getBeautifulProduct,
   getById,
   insert,
   update,
