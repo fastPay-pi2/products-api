@@ -19,19 +19,18 @@ const handleBeautifulProduct = (result, response) => {
     if (result.message) {
       response.status(200).json({ msg: result.message })
     } else {
-      var aux = new Object()
+      var aux = {}
       var beautifulProducts = []
       const products = result.res.rows
-      for (product in products){
-        aux[products[product]['idsubcategory']] = 0
+      for (var product in products) {
+        aux[products[product].idsubcategory] = 0
       }
-      for (product in products){
-        if (aux[products[product]['idsubcategory']] < 4){
-          beautifulProducts.push(products[product]);
-          aux[products[product]['idsubcategory']] += 1;
+      for (product in products) {
+        if (aux[products[product].idsubcategory] < 4) {
+          beautifulProducts.push(products[product])
+          aux[products[product].idsubcategory] += 1
         }
       }
-      console.log(beautifulProducts.length)
       response.status(200).json(beautifulProducts)
     }
   } else {

@@ -28,7 +28,7 @@ const getAll = (request, response) => {
 
 const getBeautifulProduct = (request, response) => {
   db.selectAll(tableName).then(result =>
-     handlers.handleBeautifulProduct(result, response))
+    handlers.handleBeautifulProduct(result, response))
 }
 
 const getById = (request, response) => {
